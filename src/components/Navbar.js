@@ -1,5 +1,5 @@
 import Combo from "./ComboBox"
-import SearchBar from "./SearchBar";
+
 export default function Navbar() {
   return (
     <nav class="bg-naranja-navbar">
