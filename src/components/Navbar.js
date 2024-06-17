@@ -1,4 +1,4 @@
-import Combo from "./ComboBox"
+import SearchBar from "./SearchBar"
 
 export default function Navbar() {
   return (
@@ -9,11 +9,10 @@ export default function Navbar() {
             <a href='/' class="flex flex-shrink-0 items-center">
               <img class="h-8 w-auto" src="https://http2.mlstatic.com/frontend-assets/ml-web-navigation/ui-navigation/6.6.55/mercadolibre/logo_large_25years_v2.png" alt="Your Company" />
             </a>
-            <Combo/>
+            <SearchBar/>
           </div>
         </div>
       </div>
     </nav>
-
   );
 }
