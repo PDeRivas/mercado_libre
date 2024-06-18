@@ -3,6 +3,7 @@ import React from "react"
 import List from "../components/List"
 import Card from "../components/Card"
 import Carousel from "../components/Carousel"
+
 export default class Home extends React.Component {
   constructor(){
     super()
@@ -12,7 +13,7 @@ export default class Home extends React.Component {
   }
 
   componentDidMount() {
-    this.fetchApi('auto');
+    this.fetchApi('paraguas');
   }
 
   fetchApi = async (valorBuscado) => {
@@ -33,9 +34,11 @@ export default class Home extends React.Component {
   return (
     <div className="App">
       <Navbar />
-      <p className="text-3xl font-bold underline">Home</p>
       <List/>
-      <Carousel>HOLAS</Carousel>
+      {/* <div className="w-[60%] m-auto">
+        <Carousel>{ productos }</Carousel>
+      </div> */}
+      {/* <Card>{{ title:'123', price:'140', thumbnail:'https://preview.redd.it/serious-question-whats-the-difference-between-a-regular-v0-i0spnq2kl40a1.jpg?width=640&crop=smart&auto=webp&s=7ab6f45b51c8774efe1589d92b7cc5f90109f888' }}</Card> */}
       {/* <ul>
       { productos.map((producto)=>{
           return <p>{ producto.title }</p>

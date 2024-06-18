@@ -1,12 +1,12 @@
 import React from "react"
 
 export default class Card extends React.Component {
-    constructor(data){
+    constructor(children){
         super()
         this.state = {
-            title: data.title,
-            price: data.price,
-            thumbnail: data.thumbnail,
+            title: children.children.title,
+            price: children.children.price,
+            thumbnail: children.children.thumbnail,
         }
     }
     render(){
@@ -15,21 +15,20 @@ export default class Card extends React.Component {
         const thumbnail = this.state.thumbnail
 
         return (
-            <div class="group relative">
-                <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
-                    <img src={ thumbnail } alt="Front of men&#039;s Basic Tee in black." class="h-full w-full object-cover object-center lg:h-full lg:w-full" />
+            <div className="group relative flex-0 w-64">
+                <div className="w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
+                    <img src={ thumbnail } alt={ title } className="h-full w-full object-cover object-center lg:h-full lg:w-full" />
                 </div>
-                <div class="mt-4 flex justify-between">
+                <div className="mt-4 flex justify-between">
                     <div>
-                        <h3 class="text-sm text-gray-700">
+                        <h3 className="text-sm text-gray-700">
                             <a href="">
-                                <span aria-hidden="true" class="absolute inset-0"></span>
+                                <span aria-hidden="true" className="absolute inset-0"></span>
                                 { title }
                             </a>
+                            <p className="text-sm font-medium text-gray-900">${ price }</p>
                         </h3>
-                        <p class="mt-1 text-sm text-gray-500">{ price }</p>
                     </div>
-                    <p class="text-sm font-medium text-gray-900">$35</p>
                 </div>
             </div>
     )}

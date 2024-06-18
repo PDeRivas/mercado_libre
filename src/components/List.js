@@ -6,7 +6,7 @@ export default class List extends React.Component {
         super()
         this.state = {
             productos: [],
-            valor: 'Moto',
+            valor: 'Escalera',
         }
     }
 
@@ -35,7 +35,8 @@ export default class List extends React.Component {
                 <h2 class="text-2xl font-bold tracking-tight text-gray-900">Resultados de: '{this.state.valor}'</h2>
                 <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
                     { productos.map((producto)=>{
-                        return <Card title={producto.title} price={producto.price} thumbnail={producto.thumbnail}></Card>
+                        let datos = {title:producto.title, price:producto.price, thumbnail:producto.thumbnail}
+                        return <Card>{ datos }</Card>
                     }) }
                 </div>
             </div>
