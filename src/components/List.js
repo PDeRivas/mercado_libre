@@ -1,12 +1,12 @@
 import React from "react"
 import Card from "./Card"
-
+import { getGlobalState } from "../state"
 export default class List extends React.Component {
-    constructor(hello){
+    constructor(data){
         super()
         this.state = {
             productos: [],
-            valor: 'Escalera',
+            valor: data.searchValue
         }
     }
 

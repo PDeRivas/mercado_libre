@@ -1,21 +1,16 @@
 import Navbar from "../components/Navbar"
-
-const fetchApi = async (valorBuscado) => {
-  try {
-      let respuesta = await fetch(`https://api.mercadolibre.com/sites/MLA/search?q=${valorBuscado}`)
-      let json = await respuesta.json()
- 
-      return json.results
-  } catch (error) {
-      console.error('Error:', error)
-  }
-}
+import React, { useState } from "react"
+import List from "../components/List"
+import Card from "../components/Card"
+import { getGlobalState } from "../state"
+import { useLocation, useParams } from "react-router-dom"
 
 export default function Search() {
-    return (
-      <div className="App bg-green-600">
-        <Navbar />
-        <p className="text-3xl font-bold underline">Home</p>
-      </div>
-    );
-  }
+  let search = useParams().searchItem
+  return (
+    <div className="App">
+      <Navbar />
+      <List searchValue={search}/>
+    </div>
+  )
+}
