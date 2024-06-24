@@ -1,6 +1,6 @@
 import React from "react"
 import Card from "./Card"
-import { getGlobalState } from "../state"
+
 export default class List extends React.Component {
     constructor(data){
         super()

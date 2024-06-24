@@ -1,9 +1,6 @@
+import { useParams } from "react-router-dom"
 import Navbar from "../components/Navbar"
-import React, { useState } from "react"
 import List from "../components/List"
-import Card from "../components/Card"
-import { getGlobalState } from "../state"
-import { useLocation, useParams } from "react-router-dom"
 
 export default function Search() {
   let search = useParams().searchItem

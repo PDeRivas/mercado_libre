@@ -1,12 +1,9 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { ReactComponent as Lupa } from "../svg/lupa.svg"
-import { setGlobalState, getGlobalState } from '../state';
-import { NavLink, Link, useParams, Navigate, useNavigate } from 'react-router-dom';
-import { createBrowserHistory } from 'history'
+import { useNavigate } from 'react-router-dom';
 
 export default function SearchBar() {
   let [buscador, setBuscador] = useState('')
-  let [busqueda, setBusqueda] = useState('')
   const navigate = useNavigate()
 
   const handleChange = (event) => {
@@ -14,9 +11,7 @@ export default function SearchBar() {
     setBuscador(value);
   };
 
-  const handleSubmit = (event) =>{
-    setBusqueda(buscador)
-    setBuscador('')
+  const handleSubmit = () =>{
     navigate('/search/' + buscador)
   }
 
