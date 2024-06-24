@@ -1,6 +1,7 @@
 import { BsFillArrowRightCircleFill, BsFillArrowLeftCircleFill } from "react-icons/bs"
 import { useState } from "react"
 import Card from "./Card"
+
 export default function Carousel({ children }){
     let [currentImage, setCurrentImage] = useState(0)
     let previousImage = () =>{

@@ -7,6 +7,7 @@ export default function Search() {
   return (
     <div className="App">
       <Navbar />
+      <h2 class="text-2xl font-bold tracking-tight text-gray-900 mt-20 mb-0">Resultados de: {search}</h2>
       <List searchValue={search}/>
     </div>
   )

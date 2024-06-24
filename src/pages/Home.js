@@ -7,6 +7,7 @@ export default class Home extends React.Component {
     return (
       <div className="App">
         <Navbar />
+        <h2 class="text-2xl font-bold tracking-tight text-gray-900 mt-20 mb-0">Recomendados para vos</h2>
         <List searchValue='Heladera'/>
         {/* <div className="w-[60%] m-auto">
           <Carousel>{ productos }</Carousel>
