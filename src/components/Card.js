@@ -7,12 +7,14 @@ export default class Card extends React.Component {
             title: children.children.title,
             price: children.children.price,
             thumbnail: children.children.thumbnail,
+            id : children.children.id,
         }
     }
     render(){
         const title = this.state.title
         const price = this.state.price
         const thumbnail = this.state.thumbnail
+        const id = this.state.id
 
         return (
             <div className="group relative flex-0 w-64">
@@ -22,7 +24,7 @@ export default class Card extends React.Component {
                 <div className="mt-4 flex justify-between">
                     <div>
                         <h3 className="text-sm text-gray-700">
-                            <a href="">
+                            <a href={'/product/'+id}>
                                 <span aria-hidden="true" className="absolute inset-0"></span>
                                 { title }
                             </a>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { BsFillArrowRightCircleFill, BsFillArrowLeftCircleFill } from 'react-icons/bs'
 
 const Carousel = ({ children: slides, autoSlide = false, autoSlideInterval = 3000 }) => {
     const [curr, setCurr] = useState(0)
@@ -21,8 +22,10 @@ const Carousel = ({ children: slides, autoSlide = false, autoSlideInterval = 300
             </div>
             <div className="absolute inset-0 flex items-center justify-between p-4">
                 <button onClick={prev} className='p-1 rounded-full shadow bg-white/80 text-gray-800 hover:bg-white'>
+                <BsFillArrowLeftCircleFill />
                 </button>
                 <button onClick={next} className='p-1 rounded-full shadow bg-white/80 text-gray-800 hover:bg-white'>
+                <BsFillArrowRightCircleFill />
                 </button>
             </div>
         </div>
