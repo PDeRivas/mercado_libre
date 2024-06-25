@@ -1,18 +1,13 @@
-const fetchApi = async () => {
-    try {
-        let respuesta = await fetch('aca va la api')
-        let json = await respuesta.json()
+import { useParams } from "react-router-dom"
+import Navbar from "../components/Navbar"
+import ProductInfo from "../components/ProductInfo"
 
-        return json
-    } catch (error) {
-        console.error('Error:', error)
-    }
-}
-
-export default function Product() {
+export default function Product(id) { 
+  let productId = useParams().productId
     return (
-      <div className="App">
-        <p>Producto</p>
+      <div>
+        <Navbar />
+        <ProductInfo productId={productId} />
       </div>
     );
   }

@@ -12,6 +12,7 @@ function App() {
           <Routes>
             <Route path='/' Component={Home}/>
             <Route path='/search/:searchItem' Component={Search}/>
+            <Route path='/product/:productId' Component={Product}/>
           </Routes>
         </BrowserRouter>
     </>

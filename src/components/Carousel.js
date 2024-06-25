@@ -1,36 +1,33 @@
-import { BsFillArrowRightCircleFill, BsFillArrowLeftCircleFill } from "react-icons/bs"
-import { useState } from "react"
-import Card from "./Card"
+import React, { useState, useEffect } from 'react'
 
-export default function Carousel({ children }){
-    let [currentImage, setCurrentImage] = useState(0)
-    let previousImage = () =>{
-        if (currentImage === 0) setCurrentImage(children.length - 1)
-        else setCurrentImage(currentImage - 1)
-    }
+const Carousel = ({ children: slides, autoSlide = false, autoSlideInterval = 3000 }) => {
+    const [curr, setCurr] = useState(0)
 
-    let nextImage = () =>{
-        if (currentImage === children.length -1) setCurrentImage(0)
-        else setCurrentImage(currentImage + 1)
-    }
+    const prev = () => setCurr((curr) => (curr === 0 ? slides.length - 1 : curr - 1))
 
-    return(
-        <div className="overflow-hidden relative">
-            <div className='flex transition ease-out duration-300' style={{ transform: `translateX(-${currentImage*10}%)`}}>
-                { children.map((producto)=>{
-                    let datos = {title:producto.title, price:producto.price, thumbnail:producto.thumbnail}
-                    return <Card>{ datos }</Card>
-                })}
+    const next = () => setCurr((curr) => (curr === slides.length - 1 ? 0 : curr + 1))
+
+    useEffect(() => {
+        if (!autoSlide) return
+        const slideInterval = setInterval(next, autoSlideInterval)
+        return () => clearInterval(slideInterval)
+    }, [])
+
+
+    return (
+        <div className='relative w-full h-1/4 overflow-hidden after:clear-both after:block after:content-[""]'>
+            <div className='flex transition-transform ease-out duration-500' style={{ transform: `translateX(-${curr * 100}%)` }}>
+                {slides}
             </div>
-
-            <div className="absolute top-0 h-full w-full justify-between items-center flex text-white px-10 text-3xl">
-                <button onClick={previousImage}>
-                    <BsFillArrowLeftCircleFill />
+            <div className="absolute inset-0 flex items-center justify-between p-4">
+                <button onClick={prev} className='p-1 rounded-full shadow bg-white/80 text-gray-800 hover:bg-white'>
                 </button>
-                <button onClick={nextImage}>
-                    <BsFillArrowRightCircleFill />
+                <button onClick={next} className='p-1 rounded-full shadow bg-white/80 text-gray-800 hover:bg-white'>
                 </button>
             </div>
         </div>
+
     )
 }
+
+export default Carousel
