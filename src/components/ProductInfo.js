@@ -7,6 +7,9 @@ export default class ProductInfo extends React.Component {
         super()
         this.state = {
             productId: data.productId,
+            productTitle: '',
+            productPrice: '',
+            productThumbnail: '',
             product: {pictures:[]},
             quantity: 1,
         }
@@ -24,6 +27,9 @@ export default class ProductInfo extends React.Component {
         const producto = json
 
         this.setState({ product: producto });
+        this.setState({ productTitle: this.state.product.title})
+        this.setState({ productPrice: this.state.product.price})
+        this.setState({ productThumbnail: this.state.product.thumbnail})
     } catch (error) {
         console.error('Error fetching data:', error);
         }
@@ -57,12 +63,12 @@ export default class ProductInfo extends React.Component {
 
                 <div class="mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16">
                     <div class="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
-                        <h1 class="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">{this.state.product.title}</h1>
+                        <h1 class="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">{this.state.productTitle}</h1>
                     </div>
 
                     <div class="mt-4 lg:row-span-3 lg:mt-0">
                         <h2 class="sr-only">Informacion del Producto</h2>
-                        <p class="text-3xl tracking-tight text-gray-900">${this.state.product.price}</p>
+                        <p class="text-3xl tracking-tight text-gray-900">${this.state.productPrice}</p>
 
                         <form class="mt-10">
                             <input onChange={this.changeInput} value={this.state.quantity}/>
@@ -72,7 +78,7 @@ export default class ProductInfo extends React.Component {
                                 onClick={(e)=>{
                                     e.preventDefault()
                                     console.log(this.state.quantity)
-                                    addProduct(this.state.productId, this.state.quantity)
+                                    addProduct(this.state.productId, this.state.productTitle, this.state.productPrice, this.state.productThumbnail, this.state.quantity)
                                 }}>
                                 Añadir al Carrito</button>
                         </form>
