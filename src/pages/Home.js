@@ -8,7 +8,7 @@ export default function Home(){
   return (
     <div className="App">
       <Navbar />
-      <h2 class="text-2xl font-bold tracking-tight text-gray-900 mt-20 mb-0">Recomendados para vos</h2>
+      <h2 className="text-2xl font-bold tracking-tight text-gray-900 mt-12 mb-0">Recomendados para vos</h2>
       <List searchValue={recomendado}/>
     </div>
   )

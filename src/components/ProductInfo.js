@@ -1,6 +1,6 @@
 import React from "react"
-import Card from "./Card"
 import Carousel from "./Carousel"
+import addProduct from "./addProduct"
 
 export default class ProductInfo extends React.Component {
     constructor(data){
@@ -8,6 +8,7 @@ export default class ProductInfo extends React.Component {
         this.state = {
             productId: data.productId,
             product: {pictures:[]},
+            quantity: 1,
         }
     }
 
@@ -28,8 +29,14 @@ export default class ProductInfo extends React.Component {
         }
     };
 
+    changeInput = (event) => {
+        let input = event.target.value
+        if (!isNaN(input)){
+            this.setState({quantity: input})
+        }
+    }
+
   render(){
-    console.log(this.state.product.pictures)
     return (
         <div className="bg-white">
             <div className="pt-6 w-full">
@@ -58,8 +65,16 @@ export default class ProductInfo extends React.Component {
                         <p class="text-3xl tracking-tight text-gray-900">${this.state.product.price}</p>
 
                         <form class="mt-10">
-
-                        <button type="submit" class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Añadir al Carrito</button>
+                            <input onChange={this.changeInput} value={this.state.quantity}/>
+                            <button 
+                                type="submit"
+                                class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                                onClick={(e)=>{
+                                    e.preventDefault()
+                                    console.log(this.state.quantity)
+                                    addProduct(this.state.productId, this.state.quantity)
+                                }}>
+                                Añadir al Carrito</button>
                         </form>
                     </div>
                 </div>

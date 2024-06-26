@@ -17,7 +17,7 @@ export default class Card extends React.Component {
         const id = this.state.id
 
         return (
-            <div className="group relative flex-0 w-64">
+            <div className="group relative flex-0 w-64 shadow-md hover:scale-105 duration-300">
                 <div className="w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
                     <img src={ thumbnail } alt={ title } className="h-full w-full object-cover object-center lg:h-full lg:w-full" />
                 </div>
