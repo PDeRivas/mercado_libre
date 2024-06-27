@@ -76,8 +76,6 @@ export default class ProductInfo extends React.Component {
                                 type="submit"
                                 class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                                 onClick={(e)=>{
-                                    e.preventDefault()
-                                    console.log(this.state.quantity)
                                     addProduct(this.state.productId, this.state.productTitle, this.state.productPrice, this.state.productThumbnail, this.state.quantity)
                                 }}>
                                 Añadir al Carrito</button>
