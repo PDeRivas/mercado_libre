@@ -6,7 +6,13 @@ export default function CartIcon() {
   const navigate = useNavigate()
 
   let cart = localStorage.getItem('cart')
-  cart = JSON.parse(cart)
+  if (cart === null){
+    cart = []
+  }
+  else{
+    cart = JSON.parse(cart)
+  }
+  console.log(cart.length)
 
   const handleSubmit = () =>{
     navigate('/cart')
@@ -18,8 +24,8 @@ export default function CartIcon() {
       {cart.length != 0 ? 
           <div className="t-0 absolute left-3">
             <p className="flex h-2 w-2 items-center justify-center rounded-full bg-red-500 p-3 text-xs text-white">{cart.length}</p>
-          </div>:{}}
-        <button onClick={handleSubmit} class="file: mt-4 h-6 w-6"><FontAwesomeIcon icon={faCartShopping} /></button>
+          </div>:[]}
+        <button onClick={handleSubmit} className="file: mt-4 h-6 w-6"><FontAwesomeIcon icon={faCartShopping} /></button>
       </div>
     </div>
   )

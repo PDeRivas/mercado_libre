@@ -31,11 +31,11 @@ export default class List extends React.Component {
     const { productos } = this.state
     return (
         <div className="bg-white mb-10">
-            <div class="mx-auto max-w-2xl px-4 py-0 sm:px-6 lg:max-w-7xl lg:px-8">
-                <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-                    { productos.map((producto)=>{
+            <div className="mx-auto max-w-2xl px-4 py-0 sm:px-6 lg:max-w-7xl lg:px-8">
+                <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+                    { productos.map((producto, index)=>{
                         let datos = {title:producto.title, price:producto.price, thumbnail:producto.thumbnail, id:producto.id}
-                        return <Card>{ datos }</Card>
+                        return <Card key={index} >{ datos }</Card>
                     }) }
                 </div>
             </div>
