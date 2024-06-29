@@ -1,4 +1,4 @@
-export default function addProduct(productId, productTitle, productPrice, productThumbnail, quantity = 1){
+export default function addProduct(productId, productTitle='', productPrice='', productThumbnail='', quantity = 1){
     let cartString = localStorage.getItem('cart')
     if (!cartString){
         cartString = []
@@ -26,5 +26,4 @@ export default function addProduct(productId, productTitle, productPrice, produc
     }
 
     localStorage.setItem('cart', JSON.stringify(cartString))
-    cartString= localStorage.getItem('cart')
 }
