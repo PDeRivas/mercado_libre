@@ -2,44 +2,46 @@ import React from "react"
 import Card from "./Card"
 
 export default class List extends React.Component {
-    constructor(data){
+    constructor(data) {
         super()
         this.state = {
             productos: [],
-            valor: data.searchValue
+            valor: data.searchValue,
+            cantidad: data.cantidad
         }
     }
 
     componentDidMount() {
         this.apiBusqueda(this.state.valor);
     }
-    
+
     apiBusqueda = async (valorBuscado) => {
-    try {
-        const response = await fetch(`https://api.mercadolibre.com/sites/MLA/search?q=${valorBuscado}`);
-        const json = await response.json();
+        try {
+            const response = await fetch(`https://api.mercadolibre.com/sites/MLA/search?q=${valorBuscado}`);
+            const json = await response.json();
 
-        const productos = json.results.slice(0, 8)
+            const productos = json.results.slice(0, this.state.cantidad)
 
-        this.setState({ productos: productos });
-    } catch (error) {
-        console.error('Error fetching data:', error);
+            this.setState({ productos: productos });
+        } catch (error) {
+            console.error('Error fetching data:', error);
         }
     };
 
-  render(){
-    const { productos } = this.state
-    return (
-        <div className="bg-white mb-10">
-            <div className="mx-auto max-w-2xl px-4 py-0 sm:px-6 lg:max-w-7xl lg:px-8">
-                <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-                    { productos.map((producto, index)=>{
-                        let datos = {title:producto.title, price:producto.price, thumbnail:producto.thumbnail, id:producto.id}
-                        return <Card key={index} >{ datos }</Card>
-                    }) }
+    render() {
+        const { productos } = this.state
+        return (
+            <div className="bg-white mb-10">
+                <div className="mx-auto max-w-2xl px-4 py-0 sm:px-6 lg:max-w-7xl lg:px-8">
+                    <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+                        {productos.map((producto, index) => {
+                            let datos = { title: producto.title, price: producto.price, thumbnail: producto.thumbnail, id: producto.id }
+                            return <Card key={index} >{datos}</Card>
+                        })}
+                    </div>
                 </div>
             </div>
-        </div>
-    )}
+        )
+    }
 }
 

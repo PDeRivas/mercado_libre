@@ -1,9 +1,7 @@
-export default function removeProduct(productId, quantity = 1){
+export default function removeProduct(productId) {
     let cartString = localStorage.getItem('cart')
     cartString = JSON.parse(cartString)
 
-    let removedItemCart = cartString.filter((product) =>((product.id != productId)))
-    console.log(cartString)
-    console.log(removedItemCart)
+    let removedItemCart = cartString.filter((product) => ((product.id !== productId)))
     localStorage.setItem('cart', JSON.stringify(removedItemCart))
 }

@@ -10,7 +10,7 @@ export default function Navbar() {
             <a href='/' className="flex items-center">
               <img className="h-8 w-auto" src="https://http2.mlstatic.com/frontend-assets/ml-web-navigation/ui-navigation/6.6.55/mercadolibre/logo_large_25years_v2.png" alt="Your Company" />
             </a>
-            <SearchBar/>
+            <SearchBar />
             <CartIcon />
           </div>
         </div>

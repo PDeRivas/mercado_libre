@@ -5,7 +5,7 @@ export default function PurchaseEnd() {
     <div className="App">
       <Navbar />
       <h2 className="text-2xl font-bold tracking-tight text-gray-900 mt-20 mb-0">Gracias por su compra</h2>
-        <Link to='/'>Presione aqui para seguir buscando productos</Link>
+      <p>Presione <Link to='/'><b><u>aqui</u></b></Link> para seguir buscando productos</p>
     </div>
   )
 }

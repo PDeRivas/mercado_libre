@@ -7,37 +7,37 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 
 export default function ProductInfo(data) {
-    let [productId, setProductId] = useState(data.productId)
-    let [product, setProduct] = useState({pictures: ['']})
+    let [productId] = useState(data.productId)
+    let [product, setProduct] = useState({ pictures: [''] })
     let [productTitle, setProductTitle] = useState('')
     let [productPrice, setProductPrice] = useState('')
     let [productThumbnail, setProductThumbnail] = useState('')
     let [quantity, setQuantity] = useState(1)
     let navigate = useNavigate()
 
-    useEffect(()=>{
+    useEffect(() => {
         apiBusqueda(productId);
-    }, []) 
-    
-    let apiBusqueda = async (valorBuscado) => {
-    try {
-        const response = await fetch(`https://api.mercadolibre.com/items/${valorBuscado}`);
-        const json = await response.json();
-        const producto = json
+    }, [productId])
 
-        setProduct(producto)
-        setProductTitle(producto.title)
-        setProductPrice(producto.price)
-        setProductThumbnail(producto.thumbnail)
-        setProductTitle(producto.title)
-    } catch (error) {
-        console.error('Error fetching data:', error);
+    let apiBusqueda = async (valorBuscado) => {
+        try {
+            const response = await fetch(`https://api.mercadolibre.com/items/${valorBuscado}`);
+            const json = await response.json();
+            const producto = json
+
+            setProduct(producto)
+            setProductTitle(producto.title)
+            setProductPrice(producto.price)
+            setProductThumbnail(producto.thumbnail)
+            setProductTitle(producto.title)
+        } catch (error) {
+            console.error('Error fetching data:', error);
         }
     };
 
     let changeInput = (event) => {
         let input = event.target.value
-        if (!isNaN(input)){
+        if (!isNaN(input)) {
             setQuantity(input)
         }
     }
@@ -47,18 +47,18 @@ export default function ProductInfo(data) {
         <div className="bg-white">
             <div className="pt-6 w-full">
                 <div className="flex justify-center">
-                <div>
-                <div className="w-72 flex-shrink-0">
-                    <Carousel autoSlide={false} >
-                        {[...product.pictures.map((s, index) => (
-                            <div key={index}className="h-72 w-72 flex items-center justify center flex-shrink-0" >
-                            <img src={s.url} alt={`Product image ${index+1}`} className="w-full h-full object-center" />
-                            </div>
-                        ))
-                        ]}
-                    </Carousel>
-                </div>
-                </div>
+                    <div>
+                        <div className="w-72 flex-shrink-0">
+                            <Carousel autoSlide={false} >
+                                {[...product.pictures.map((s, index) => (
+                                    <div key={index} className="h-72 w-72 flex items-center justify center flex-shrink-0" >
+                                        <img src={s.url} alt={`${index + 1}`} className="w-full h-full object-center" />
+                                    </div>
+                                ))
+                                ]}
+                            </Carousel>
+                        </div>
+                    </div>
                 </div>
 
                 <div className="mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16">
@@ -72,26 +72,29 @@ export default function ProductInfo(data) {
 
                         <form className="mt-10">
                             <div className="flex justify-center">
-                                <button className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-3 mr-2 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                                onClick={(e)=>{
-                                    e.preventDefault()
-                                    if(quantity > 0){
-                                    setQuantity(quantity-1)}}}>
-                                    <FontAwesomeIcon icon={faMinus}/>
+                                <button className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-3 mr-2 text-center inline-flex items-center"
+                                    onClick={(e) => {
+                                        e.preventDefault()
+                                        if (quantity > 1) {
+                                            setQuantity(quantity - 1)
+                                        }
+                                    }}>
+                                    <FontAwesomeIcon icon={faMinus} />
                                 </button>
-                                <input onChange={changeInput} className="w-12 aspect-[1/1]" value={quantity} disabled/>
-                                <button className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-3 ml-2 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                                onClick={(e)=>{
-                                    e.preventDefault()
-                                    setQuantity(quantity+1)}}>
-                                    <FontAwesomeIcon icon={faPlus}/>
+                                <input onChange={changeInput} className="w-12 aspect-[1/1 text-center" value={quantity} disabled />
+                                <button className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-3 ml-2 text-center inline-flex items-center"
+                                    onClick={(e) => {
+                                        e.preventDefault()
+                                        setQuantity(quantity + 1)
+                                    }}>
+                                    <FontAwesomeIcon icon={faPlus} />
                                 </button>
                             </div>
 
-                            <button 
+                            <button
                                 type="submit"
                                 className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                                onClick={(e)=>{
+                                onClick={(e) => {
                                     addProduct(productId, productTitle, productPrice, productThumbnail, quantity)
                                     navigate('/cart')
                                 }}>

@@ -8,7 +8,7 @@ export default function Search() {
     <div className="App">
       <Navbar />
       <h2 className="text-2xl font-bold tracking-tight text-gray-900 mt-20 mb-0">Resultados de: {search}</h2>
-      <List searchValue={search}/>
+      <List searchValue={search} cantidad={32} />
     </div>
   )
 }
