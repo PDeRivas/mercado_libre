@@ -4,7 +4,10 @@ import CartList from "../components/CartList"
 import CartButtons from "../components/CartButtons"
 
 export default function Cart(){
-  let hayProductos = localStorage.getItem('cart') != null
+  let cart = localStorage.getItem('cart')
+  cart = JSON.parse(cart)
+  let hayProductos = (cart != null && cart.length != 0)
+
   return (
     <div className="App">
       <Navbar />

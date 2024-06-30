@@ -11,9 +11,10 @@ export default function CartList() {
         }
 
     let total = 0
+    
     return (
         <div className="relative overflow-x-auto">
-            {cart.length != 0 ?
+            {cart.length !== 0 ?
             <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                 <thead className="text-xs text-gray-700 uppercase bg-gray-50">
                     <tr>
@@ -41,6 +42,8 @@ export default function CartList() {
                     </td>
                     <td className="px-6 py-4">
                         {total}
+                    </td>
+                    <td>
                     </td>
                 </tr>
                 </tbody>

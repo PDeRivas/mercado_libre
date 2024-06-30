@@ -3,6 +3,8 @@ import Carousel from "./Carousel"
 import addProduct from "./addProduct"
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 
 export default function ProductInfo(data) {
     let [productId, setProductId] = useState(data.productId)
@@ -69,7 +71,23 @@ export default function ProductInfo(data) {
                         <p className="text-3xl tracking-tight text-gray-900">${productPrice}</p>
 
                         <form className="mt-10">
-                            <input onChange={changeInput} value={quantity}/>
+                            <div className="flex justify-center">
+                                <button className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-3 mr-2 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                                onClick={(e)=>{
+                                    e.preventDefault()
+                                    if(quantity > 0){
+                                    setQuantity(quantity-1)}}}>
+                                    <FontAwesomeIcon icon={faMinus}/>
+                                </button>
+                                <input onChange={changeInput} className="w-12 aspect-[1/1]" value={quantity} disabled/>
+                                <button className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-3 ml-2 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                                onClick={(e)=>{
+                                    e.preventDefault()
+                                    setQuantity(quantity+1)}}>
+                                    <FontAwesomeIcon icon={faPlus}/>
+                                </button>
+                            </div>
+
                             <button 
                                 type="submit"
                                 className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
